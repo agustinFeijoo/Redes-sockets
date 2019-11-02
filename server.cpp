@@ -11,19 +11,20 @@ void error(const char *msg){
 	perror(msg);
 	exit(1);
 }
-int main(int argc,char *argv[]){
-	if(argc<2)
-		fprintf(stderr,"Port No not provided.Error");
+int main(int argc,char *argv[]){	
 
 		int sockfd,newsockfd,portno,n;
 		char buffer[255];
-		struct sockaddr_in serv_addr,cli_addr;//
+		struct sockaddr_in serv_addr,cli_addr;
 		socklen_t clilen;
 		sockfd=socket(AF_INET,SOCK_STREAM,0);//porque no af_unit? es para la comunicacion interna
 		if(sockfd<0)
 			error("Error opening socket");
 		bzero((char*)&serv_addr,sizeof(serv_addr));
-		portno=atoi(argv[1]);
+		printf("Ingresar un puerto");
+		scanf("%d",&portno);
+		
+		//portno=atoi(argv[1]);
 
 		serv_addr.sin_family=AF_INET;
 		serv_addr.sin_addr.s_addr=INADDR_ANY;
